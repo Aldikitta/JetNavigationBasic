@@ -13,6 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.aldikitta.jetnavigationbasic.ui.theme.JetNavigationBasicTheme
+import com.ramcosta.composedestinations.DestinationsNavHost
 
 class MainActivity : ComponentActivity() {
     lateinit var navController: NavHostController
@@ -20,12 +21,13 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             JetNavigationBasicTheme {
-                navController = rememberNavController()
+//                navController = rememberNavController()
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    SetupNavGraph(navController = navController)
+                    DestinationsNavHost(navGraph = NavGraphs.root)
+//                    SetupNavGraph(navController = navController)
                 }
             }
         }

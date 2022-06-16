@@ -12,26 +12,33 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.aldikitta.jetnavigationbasic.destinations.HomeScreenDestination
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import com.ramcosta.composedestinations.navigation.popUpTo
 import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneId
 
+@Destination
 @Composable
 fun DetailScreen(
-    navController: NavController,
-    name: String,
-    userId: String,
-    created: Long
+//    navController: NavController,
+    user: User,
+    navigator: DestinationsNavigator
+//    name: String,
+//    userId: String,
+//    created: Long
 ) {
-    val user = remember {
-        User(
-            name = name,
-            id = userId,
-            created = LocalDateTime.ofInstant(
-                Instant.ofEpochMilli(created), ZoneId.systemDefault()
-            )
-        )
-    }
+//    val user = remember {
+//        User(
+//            name = name,
+//            id = userId,
+//            created = LocalDateTime.ofInstant(
+//                Instant.ofEpochMilli(created), ZoneId.systemDefault()
+//            )
+//        )
+//    }
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
         Column(
             verticalArrangement = Arrangement.Center,
@@ -39,16 +46,24 @@ fun DetailScreen(
         ) {
             Button(
                 onClick = {
-                    navController.navigate(route = Screen.Home.route) {
-                        popUpTo(Screen.Home.route) {
-                            inclusive = true
-                        }
-                    }
+                          navigator.navigate(
+                              direction = HomeScreenDestination,
+                              builder = {
+                                  popUpTo(HomeScreenDestination){
+                                      inclusive = true
+                                  }
+                              }
+
+                          )
+//                    navController.navigate(route = Screen.Home.route) {
+//                        popUpTo(Screen.Home.route) {
+//                            inclusive = true
+//                        }
+//                    }
                 },
                 content = { Text(text = "This is detail") })
             Text(text = "$user", textAlign = TextAlign.Center)
         }
-
     }
 }
 
