@@ -7,7 +7,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavController
 import com.aldikitta.jetnavigationbasic.destinations.DetailScreenDestination
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
@@ -19,7 +18,6 @@ import java.time.LocalDateTime
 @Composable
 fun HomeScreen(
     navigator: DestinationsNavigator
-//    navController: NavController
 ) {
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
         Button(
@@ -34,12 +32,6 @@ fun HomeScreen(
                           )
 
                       )
-//                navController.navigate(route = Screen.Detail.passingArguments(
-//                userId = "A10",
-//                name = "Aldi",
-//                timestamp = 123456789
-//            )
-//                )
                       },
             content = { Text(text = "Click Me") })
     }
